@@ -1,25 +1,24 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 from apps.users.constants import UserType
 from apps.users.managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    phone = models.IntegerField(_('username'), unique=True)
+    phone = models.CharField(_('username'), max_length=20, unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     user_type = models.IntegerField(choices=UserType.get_choices())
     objects = UserManager()
 
     USERNAME_FIELD = 'phone'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['user_type',]
 
     class Meta:
         verbose_name = _('user')
