@@ -48,7 +48,8 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     'base',
-    'apps.users'
+    'apps.users',
+    'apps.bookings'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

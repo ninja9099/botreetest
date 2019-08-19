@@ -34,3 +34,19 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+
+class CustomerUserSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+    booking_time = serializers.DateTimeField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'booking_time', 'first_name', 'last_name', 'city', 'phone')
+
+    def create(self, validated_data):
+        validated_data.pop('booking_time')
+        user = super(CustomerUserSerializer, self).create(validated_data)
+        user.save()
+        return user
