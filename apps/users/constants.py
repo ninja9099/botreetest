@@ -1,12 +1,14 @@
 
 class UserType:
-
-    CUSTOMER = 1
-    CLEANER = 2
+    ADMIN = 1
+    CUSTOMER = 2
+    CLEANER = 3
 
     FieldStr = {
+        ADMIN: 'Admin',
         CUSTOMER: 'Customer',
-        CLEANER: 'Cleaner'
+        CLEANER: 'Cleaner',
+
     }
 
     @classmethod

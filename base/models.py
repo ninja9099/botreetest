@@ -27,6 +27,9 @@ class Country(Base):
         verbose_name_plural = "Countries"
         unique_together = ('name', 'short_name')
 
+    def __str__(self):
+        return self.name
+
 
 class State(Base):
     country = models.ForeignKey(Country, related_name='state_set', on_delete=models.CASCADE)
@@ -38,6 +41,9 @@ class State(Base):
         verbose_name_plural = "States"
         unique_together = ('name', 'country')
 
+    def __str__(self):
+        return self.name
+
 
 class City(Base):
     state = models.ForeignKey(State, related_name='city_set', on_delete=models.CASCADE)
@@ -48,3 +54,6 @@ class City(Base):
         db_table = "bmc_city"
         verbose_name_plural = "Cities"
         unique_together = ('name', 'state')
+
+    def __str__(self):
+        return self.name

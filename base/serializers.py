@@ -1,15 +1,12 @@
 
-
 from rest_framework import serializers
-
-from apps.users.models import User
 from base.models import Country, City, State
 
 
 class CitySerializers(serializers.ModelSerializer):
     class Meta:
         model = City
-        fields = ('name',)
+        fields = ('id', 'name',)
 
 
 class StateSerializers(serializers.ModelSerializer):
@@ -17,7 +14,7 @@ class StateSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = State
-        fields = ('name', 'cities')
+        fields = ('id', 'name', 'cities')
 
 
 class CountrySerializers(serializers.ModelSerializer):
@@ -25,6 +22,4 @@ class CountrySerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Country
-        fields = ('name', 'states')
-
-
+        fields = ('id', 'name', 'states')
